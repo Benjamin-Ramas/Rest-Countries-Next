@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../css/main.module.css";
 import BackgroundRef from "./components/backgroundRef";
 

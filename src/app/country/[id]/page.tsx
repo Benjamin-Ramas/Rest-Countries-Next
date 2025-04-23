@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type countryData = {
@@ -15,7 +15,7 @@ type countryData = {
     region: string,
     subregion: string,
     tld: string,
-    languages: {},
+    languages: [],
     borders: object
 
 }
@@ -32,7 +32,7 @@ const defaultCountry: countryData = {
     region: '',
     subregion: '',
     tld: '',
-    languages: {},
+    languages: [],
     borders: {},
 };
 
