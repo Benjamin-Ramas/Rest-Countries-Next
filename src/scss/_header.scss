@@ -1,0 +1,68 @@
+@import 'colours';
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    
+    padding-bottom: 1.7rem;
+    padding-left: 5rem;
+    letter-spacing: 0.025em;
+    max-height: 5rem;
+}
+
+.headerText{
+    margin-top: 1.5rem;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.header.darkmode{
+    background-color: $Dark-Mode-Elements;
+}
+
+.header.lightmode{
+    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.themeButton{
+    margin-right: 3.3rem;
+    letter-spacing: 0.015em;
+    margin-top: 0.35rem;
+    border: none;
+    font-weight: 300;
+    font-size: 1em;
+    height: 4rem;
+    width: 10rem;
+    border-radius: 2rem;
+    padding-bottom: 0.35rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.header.darkmode>.themeButton{
+    background-color: $Dark-Mode-Elements;
+    color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.header.lightmode>.themeButton{
+    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.header.lightmode>.themeButton:hover{
+    margin-top: 0.15rem;
+    background-color: $Light-Mode-Background;
+    box-shadow: 0 5px 10px #85858580, 0 15px 40px #85858529;
+}
+
+.header.darkmode>.themeButton:hover{
+    margin-top: 0.15rem;
+    background-color: $Dark-Mode-Background;
+}
+
+.themeButton>img{
+    position: relative;
+    top: 0.2em;
+    max-height: 1.4rem;
+    margin-right: 0.25rem;
+    fill: $Dark-Mode-Text-Light-Mode-Elements;
+}

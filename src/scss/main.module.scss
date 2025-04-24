@@ -1,4 +1,15 @@
+@import 'header';
+@import 'countryData';
+
 .backgroundRef{
     position: absolute;
-    z-index: -100;
+    top: 0;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.styleWrapper{
+    min-height: 100vh;
+    height: 100%;
 }

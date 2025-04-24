@@ -2,25 +2,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { fetchData, fetchBorders, fetchNativeNames, fetchedCountryData } from '@/app/utils/getCountry';
+import Header from "@/app/components/header";
+import BackgroundRef from "@/app/components/backgroundRef";
+import styles from "@/css/main.module.css";
+import StyleWrapper from "@/app/components/styleWrapper";
+import { THEME } from "@/app/components/styleWrapper";
+import Loading from "./loading";
 
-type countryData = {
-    flags: {
-        png: string
-    }
-    name: {
-        common: string,
-        nativeName: [ {common: string} ]
-    },
-    population: number,
-    region: string,
-    subregion: string,
-    tld: string,
-    languages: [],
-    borders: object
-
-}
-
-const defaultCountry: countryData = {
+const defaultCountry: fetchedCountryData = {
     flags: {
         png: 'https://flagcdn.com/w320/pf.png'
     },
@@ -37,50 +27,11 @@ const defaultCountry: countryData = {
 };
 
 export default function Page(){
-    const fetchBorders = async () => {
-        if(data.borders != undefined){
-            const tempBorders: string[] = await Promise.all(
-                Object.keys(data.borders).map(async (n) => {
-                    const res = await fetch(`https://restcountries.com/v3.1/alpha/${data.borders[n as keyof object]}`);
-                    const d = await res.json();
-                    if(d[0] != undefined){
-                        return d[0].name.common;
-                    }
-                })
-            );
-            setBorders(tempBorders);
-        }
-    }
-
-    const fetchNativeNames = async () => {
-        const tempNativeNames: (string | undefined)[] = await Promise.all(
-            Object.keys(data.name.nativeName).map(async (n) => {
-                const res = await fetch(`https://restcountries.com/v3.1/lang/${n}`);
-                const d = await res.json();
-                if(d[0] != undefined){
-                    return `${d[0].languages[n]}: ${data.name.nativeName[n as keyof object].common}`;
-                }
-            })
-        );
-        const filteredNativeNames: string[] = tempNativeNames.filter((name): name is string => name !== undefined);
-    if(filteredNativeNames.length > 1){
-        setNativeNames(filteredNativeNames);
-    }
-    else{
-        setNativeNames([filteredNativeNames[0].split(':')[1]]);
-    }
-    };
-
     useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/name/${countryName}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data[0])
-            setMounted(true);
-          })
+        fetchData(countryName, setData, setMounted);
       }, [])
 
-    const [data, setData] = useState<countryData>(defaultCountry);
+    const [data, setData] = useState<fetchedCountryData>(defaultCountry);
     const [isLoading, setLoading] = useState(true);
     const [isMounted, setMounted] = useState(false);
 
@@ -101,45 +52,73 @@ export default function Page(){
             try {
                 setCommonName(data.name.common);
                 if(data.name.nativeName != undefined){
-                    fetchNativeNames();
+                    fetchNativeNames(data, setNativeNames);
                 }
-                fetchNativeNames();
+                fetchNativeNames(data, setNativeNames);
                 setPopulation(data.population);
                 setRegion(data.region);
                 setSubregion(data.subregion);
                 setTopLevelDomain(data.tld);
                 setLanguages(Object.keys(data.languages).map((l) => data.languages[l as keyof object]));
                 setFlagPng(data.flags.png);
-                fetchBorders();
+                fetchBorders(data, setBorders);
             } catch (error) {
                 console.error(error);
             }
             setLoading(false);
         }
     }, [data]);
-    if(!isLoading){
-    return(
-        <>
-            <img src={flagPng}/>
-            <h1>{commonName}</h1>
-            <h3>Name in Native Language{nativeNames.length > 1 ? 's' : ''}: </h3>
-            {nativeNames.map(n => <h4 key={n}>{n}</h4>)}
-            <h3>Population: {population}</h3>
-            <h3>Region: {region}</h3>
-            <h3>Sub Region: {subregion}</h3>
-            <h3>Top Level Domain: {topLevelDomain}</h3>
-            <h3>Languages</h3>
-            {languages.map(n => <h4 key={n}>{n}</h4>)}
-            <h3>Border Countries</h3>
-            {borders.map(n =>
-                <Link href={`/country/${n}`} key={n}>
-                    <button key={n}>{n}</button>
-                </Link>
-            )}
-        </>
-    )}
-    else{
-        return(<>
-        </>)
+
+    console.log(isLoading);
+
+    if(isLoading){
+        return(
+            <Loading />
+        )
     }
+
+    console.log(borders.length)
+
+    return(
+        <StyleWrapper>
+            <BackgroundRef />
+            <button className={styles.backButton}>
+                <img className={styles.backButtonArrow} src={'/right-arrow-svgrepo-com.svg'} />
+                Back
+            </button>
+            <div className={styles.countryInfo}>
+                <div className={styles.flagHolder}>
+                    <img className={styles.countryFlag} src={flagPng}/>
+                </div>
+                <div className={styles.countryData}>
+                    <h1 className={styles.countryNameDisplay}>{commonName}</h1>
+                    <ul className={styles.countrySubInformation}>
+                        <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
+                        <ul className={styles.nativeNamesList}>{nativeNames.map(n => <li key={n}>{n}</li>)}</ul>
+                        <li><span className={styles.bold}>Population: </span>{population}</li>
+                        <li><span className={styles.bold}>Region: </span>{region}</li>
+                        <li><span className={styles.bold}>Sub Region: </span>{subregion}</li>
+                        <li><span className={styles.bold}>Top Level Domain: </span>{topLevelDomain}</li>
+                        <ul className={styles.languageHolder}>
+                            <li><span className={styles.bold}>Languages: </span>
+                                {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
+                            </li>
+                        </ul>
+                    </ul>
+                    <div className={styles.borderHolder}>
+                        <h5>{borders.length == 1 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
+                        <ul className={styles.borderList}>
+                            {borders.length == 1 ? <></> : borders.map(n =>
+                                <li key={n}>
+                                    <Link href={`/country/${n}`} key={n}>
+                                        <button key={n}>{n}</button>
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </ StyleWrapper>
+    )
 }

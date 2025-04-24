@@ -1,0 +1,171 @@
+.countryInfo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 5rem;
+    max-height: 30rem;
+}
+
+.flagData {
+    display: flex;
+    flex-direction: column;
+}
+
+.backButton {
+    font-family: "Nunito Sans", sans-serif;
+    min-width: 8.5rem;
+    min-height: 2.5rem;
+    border-radius: 5px;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding-bottom: 0.25rem;
+    border: none;
+    cursor: pointer;
+}
+
+.backButton img {
+    max-height: 1.5rem;
+    position: relative;
+    top: 0.3rem;
+    margin-right: 0.5rem;
+    transform: scaleX(-1);
+}
+
+.styleWrapper.darkmode .backButton {
+    background-color: $Dark-Mode-Elements;
+    color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.styleWrapper.lightmode .backButton {
+    color: $Light-Mode-Text;
+}
+
+.styleWrapper.darkmode .backButton img {
+    filter: invert(100%);
+}
+
+.styleWrapper.header.lightmode .backButton img {
+    filter: invert(6%) sepia(11%) saturate(844%) hue-rotate(155deg) brightness(98%) contrast(96%);
+}
+
+.header.darkmode > .themeButton {
+    background-color: $Dark-Mode-Elements;
+    color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.header.lightmode > .themeButton {
+    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+}
+
+.header.lightmode > .themeButton:hover {
+    margin-top: 0.15rem;
+    background-color: $Light-Mode-Background;
+    box-shadow: 0 5px 10px #85858580, 0 15px 40px #85858529;
+}
+
+.header.darkmode > .themeButton:hover {
+    margin-top: 0.15rem;
+    background-color: $Dark-Mode-Background;
+}
+
+.countryInfo .flagHolder {
+    flex: 4.8;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.countryInfo .flagHolder .countryFlag {
+    margin: auto;
+    margin-top: 0;
+    max-height: 25rem;
+    height: 100%;
+    max-width: 80%;
+    object-fit: contain;
+}
+
+.countryInfo .countryData {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.3rem;
+}
+
+.countrySubInformation {
+    display: flex;
+    flex-direction: column;
+    max-height: 45%;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.countrySubInformation li {
+    font-size: 1em;
+    margin-bottom: 0.6rem;
+    margin-right: 3rem;
+}
+
+.languageHolder {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.languageHolder ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin-left: 0.5em;
+}
+
+.languageHolder li {
+    margin-right: 0.5em;
+}
+
+.nativeNamesList {
+    list-style:circle;
+    margin-left: 3em;
+}
+
+.borderHolder {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 1.2em;
+}
+
+.borderHolder h3 {
+    margin: auto;
+    text-wrap: nowrap;
+}
+
+.borderList {
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    list-style: none;
+    flex-wrap: wrap;
+    margin-left: 0.75rem;
+}
+
+.borderList li {
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.borderList li button {
+    padding: 0.15rem 0.35rem;
+    min-width: 6rem;
+    padding: 0.2rem 0;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 600;
+}
