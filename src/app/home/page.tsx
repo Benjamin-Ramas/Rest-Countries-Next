@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 
 export default function Page(){
-    const {theme, setTheme} = useTheme();
+    const {theme} = useTheme();
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
