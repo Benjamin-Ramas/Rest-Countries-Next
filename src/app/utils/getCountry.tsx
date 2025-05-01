@@ -1,7 +1,9 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 export type fetchedCountryData = {
+    flag: string;
     flags: {
-        png: string
+        png: string,
+        alt: string
     }
     name: {
         common: string,

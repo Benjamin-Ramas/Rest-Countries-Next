@@ -9,11 +9,12 @@ import styles from "@/css/main.module.css";
 import Loading from "./loading"
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { Metadata } from "next";
 
 const defaultCountry: fetchedCountryData = {
+    flag: '',
     flags: {
-        png: 'https://flagcdn.com/w320/pf.png'
+        png: 'https://flagcdn.com/w320/pf.png',
+        alt: 'default'
     },
     name: {
         common: '',
@@ -41,30 +42,17 @@ export default function Page(){
 
     const countryName = usePathname().split('/')[2].replace('_', ' ').replace('+', ' ');
     
-    const [flagPng, setFlagPng] = useState<string>('https://flagcdn.com/w320/pf.png');
-    const [commonName, setCommonName] = useState('');
     const [nativeNames, setNativeNames] = useState<string[]>([]);
-    const [population, setPopulation] = useState<number>(0);
-    const [region, setRegion] = useState<string>('');
-    const [subregion, setSubregion] = useState<string>('');
-    const [topLevelDomain, setTopLevelDomain] = useState<string>('');
     const [languages, setLanguages] = useState<string[]>(['']);
     const [borders, setBorders] = useState<string[]>(['']);
 
     useEffect(() => {
         if (isMounted) {
             try {
-                setCommonName(data.name.common);
                 if(data.name.nativeName != undefined){
                     fetchNativeNames(data, setNativeNames);
                 }
-                fetchNativeNames(data, setNativeNames);
-                setPopulation(data.population);
-                setRegion(data.region);
-                setSubregion(data.subregion);
-                setTopLevelDomain(data.tld);
                 setLanguages(Object.keys(data.languages).map((l) => data.languages[l as keyof object]));
-                setFlagPng(data.flags.png);
                 fetchBorders(data, setBorders);
             } catch (error) {
                 console.error(error);
@@ -79,11 +67,12 @@ export default function Page(){
         )
     }
 
-    console.log(commonName);
+    console.log(data.flag);
 
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
-            <title>{`Rest-${commonName}`}</title>
+            <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${data.flag}</text></svg>`}></link>
+            <title>{`${data.name.common} Rest-Countries`}</title>
             <Header />
             <BackgroundRef />
                 <button className={styles.backButton} onClick={router.back}>
@@ -92,17 +81,17 @@ export default function Page(){
                 </button>
                 <div className={styles.countryInfo}>
                     <div className={styles.flagHolder}>
-                        <img className={styles.countryFlag} src={flagPng}/>
+                        <img className={styles.countryFlag} src={data.flags.png} alt={data.flags.alt}/>
                     </div>
                     <div className={styles.countryData}>
-                        <h1 className={styles.countryNameDisplay}>{commonName}</h1>
+                        <h1 className={styles.countryNameDisplay}>{data.name.common}</h1>
                         <ul className={styles.countrySubInformation}>
                             <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
                             <ul className={styles.nativeNamesList}>{nativeNames.map(n => <li key={n}>{n}</li>)}</ul>
-                            <li><span className={styles.bold}>Population: </span>{population}</li>
-                            <li><span className={styles.bold}>Region: </span>{region}</li>
-                            <li><span className={styles.bold}>Sub Region: </span>{subregion}</li>
-                            <li><span className={styles.bold}>Top Level Domain: </span>{topLevelDomain}</li>
+                            <li><span className={styles.bold}>Population: </span>{data.population}</li>
+                            <li><span className={styles.bold}>Region: </span>{data.region}</li>
+                            <li><span className={styles.bold}>Sub Region: </span>{data.subregion}</li>
+                            <li><span className={styles.bold}>Top Level Domain: </span>{data.tld}</li>
                             <ul className={styles.languageHolder}>
                                 <li><span className={styles.bold}>Languages: </span>
                                     {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
