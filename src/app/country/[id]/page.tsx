@@ -27,7 +27,7 @@ const defaultCountry: fetchedCountryData = {
 };
 
 export default function Page(){
-    const {theme, setTheme} = useTheme();
+    const {theme} = useTheme();
     const router = useRouter();
 
     useEffect(() => {
