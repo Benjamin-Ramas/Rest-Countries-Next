@@ -9,6 +9,7 @@ import styles from "@/css/main.module.css";
 import Loading from "./loading"
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
 
 const defaultCountry: fetchedCountryData = {
     flags: {
@@ -27,7 +28,7 @@ const defaultCountry: fetchedCountryData = {
 };
 
 export default function Page(){
-    const {theme} = useTheme();
+    const {theme, setTheme} = useTheme();
     const router = useRouter();
 
     useEffect(() => {
@@ -109,9 +110,9 @@ export default function Page(){
                             </ul>
                         </ul>
                         <div className={styles.borderHolder}>
-                            <h5>{borders.length == 1 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
+                            <h5>{borders.length == 0 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
                             <ul className={styles.borderList}>
-                                {borders.length == 1 ? <></> : borders.map(n =>
+                                {borders.length == 0 ? <></> : borders.map(n =>
                                     <li key={n}>
                                         <Link href={`/country/${n}`} key={n}>
                                             <button key={n}>{n}</button>
