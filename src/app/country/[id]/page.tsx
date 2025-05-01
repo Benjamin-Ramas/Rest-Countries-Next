@@ -6,9 +6,9 @@ import { fetchData, fetchBorders, fetchNativeNames, fetchedCountryData } from '@
 import Header from "@/app/components/header";
 import BackgroundRef from "@/app/components/backgroundRef";
 import styles from "@/css/main.module.css";
-import StyleWrapper from "@/app/components/styleWrapper";
-import { THEME } from "@/app/components/styleWrapper";
-import Loading from "./loading";
+import Loading from "./loading"
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 const defaultCountry: fetchedCountryData = {
     flags: {
@@ -27,6 +27,9 @@ const defaultCountry: fetchedCountryData = {
 };
 
 export default function Page(){
+    const {theme, setTheme} = useTheme();
+    const router = useRouter();
+
     useEffect(() => {
         fetchData(countryName, setData, setMounted);
       }, [])
@@ -69,56 +72,56 @@ export default function Page(){
         }
     }, [data]);
 
-    console.log(isLoading);
-
     if(isLoading){
         return(
             <Loading />
         )
     }
 
-    console.log(borders.length)
+    console.log(commonName);
 
     return(
-        <StyleWrapper>
+        <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
+            <title>{`Rest-${commonName}`}</title>
+            <Header />
             <BackgroundRef />
-            <button className={styles.backButton}>
-                <img className={styles.backButtonArrow} src={'/right-arrow-svgrepo-com.svg'} />
-                Back
-            </button>
-            <div className={styles.countryInfo}>
-                <div className={styles.flagHolder}>
-                    <img className={styles.countryFlag} src={flagPng}/>
-                </div>
-                <div className={styles.countryData}>
-                    <h1 className={styles.countryNameDisplay}>{commonName}</h1>
-                    <ul className={styles.countrySubInformation}>
-                        <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
-                        <ul className={styles.nativeNamesList}>{nativeNames.map(n => <li key={n}>{n}</li>)}</ul>
-                        <li><span className={styles.bold}>Population: </span>{population}</li>
-                        <li><span className={styles.bold}>Region: </span>{region}</li>
-                        <li><span className={styles.bold}>Sub Region: </span>{subregion}</li>
-                        <li><span className={styles.bold}>Top Level Domain: </span>{topLevelDomain}</li>
-                        <ul className={styles.languageHolder}>
-                            <li><span className={styles.bold}>Languages: </span>
-                                {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
-                            </li>
-                        </ul>
-                    </ul>
-                    <div className={styles.borderHolder}>
-                        <h5>{borders.length == 1 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
-                        <ul className={styles.borderList}>
-                            {borders.length == 1 ? <></> : borders.map(n =>
-                                <li key={n}>
-                                    <Link href={`/country/${n}`} key={n}>
-                                        <button key={n}>{n}</button>
-                                    </Link>
+                <button className={styles.backButton} onClick={router.back}>
+                    <img className={styles.backButtonArrow} src={'/right-arrow-svgrepo-com.svg'} />
+                    Back
+                </button>
+                <div className={styles.countryInfo}>
+                    <div className={styles.flagHolder}>
+                        <img className={styles.countryFlag} src={flagPng}/>
+                    </div>
+                    <div className={styles.countryData}>
+                        <h1 className={styles.countryNameDisplay}>{commonName}</h1>
+                        <ul className={styles.countrySubInformation}>
+                            <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
+                            <ul className={styles.nativeNamesList}>{nativeNames.map(n => <li key={n}>{n}</li>)}</ul>
+                            <li><span className={styles.bold}>Population: </span>{population}</li>
+                            <li><span className={styles.bold}>Region: </span>{region}</li>
+                            <li><span className={styles.bold}>Sub Region: </span>{subregion}</li>
+                            <li><span className={styles.bold}>Top Level Domain: </span>{topLevelDomain}</li>
+                            <ul className={styles.languageHolder}>
+                                <li><span className={styles.bold}>Languages: </span>
+                                    {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
                                 </li>
-                            )}
+                            </ul>
                         </ul>
+                        <div className={styles.borderHolder}>
+                            <h5>{borders.length == 1 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
+                            <ul className={styles.borderList}>
+                                {borders.length == 1 ? <></> : borders.map(n =>
+                                    <li key={n}>
+                                        <Link href={`/country/${n}`} key={n}>
+                                            <button key={n}>{n}</button>
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </ StyleWrapper>
+        </div>
     )
 }

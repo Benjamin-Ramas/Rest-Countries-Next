@@ -1,24 +1,24 @@
 :root {
-  --background: #ffffff;
-  --foreground: #202c37;
+  --background: white;
+  --foreground: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #202c37;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: #202c37;
+  --foreground: white;
 }
 
 html,
 body {
+  width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: --foreground;
+  background-color: var(--background);
   font-family: "Nunito Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,4 +34,8 @@ body {
 a { 
   color: inherit;
   text-decoration: none;
+}
+
+button{
+    cursor: pointer;
 }

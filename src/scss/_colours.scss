@@ -2,16 +2,16 @@ $Dark-Mode-Elements: #2b3945;
 $Dark-Mode-Background: #202c37;
 $Light-Mode-Text: #111517;
 $Light-Mode-Input: #858585;
-$Light-Mode-Background: hsl(0, 0%, 98%);
+$Light-Mode-Background: #fafafa;
 $Dark-Mode-Text-Light-Mode-Elements: #ffffff;
 
 
-.darkmode{
+.dark{
     background-color: $Dark-Mode-Background;
     color: $Dark-Mode-Text-Light-Mode-Elements;
 }
 
-.lightmode{
+.light{
     background-color: $Light-Mode-Background;
     color: $Light-Mode-Text;
 }

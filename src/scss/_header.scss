@@ -10,18 +10,28 @@
     max-height: 5rem;
 }
 
+.light.header{
+    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+    box-shadow: 0 0 5px 5px rgba(133, 133, 133, 0.25), 0 0 15px 15px rgba(133, 133, 133, 0.05);
+}
+
+.dark.header{
+    background-color: red;
+    box-shadow: 0 0 5px 5px rgba(13, 18, 24, 0.25), 0 0 15px 15px rgba(7, 10, 14, 0.05);
+}
+
 .headerText{
     margin-top: 1.5rem;
     font-size: 1.5em;
     font-weight: 600;
 }
 
-.header.darkmode{
-    background-color: $Dark-Mode-Elements;
-}
-
-.header.lightmode{
-    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+.themeButton img{
+    position: relative;
+    top: 0.2em;
+    max-height: 1.4rem;
+    margin-right: 0.25rem;
+    fill: $Dark-Mode-Text-Light-Mode-Elements;
 }
 
 .themeButton{
@@ -39,30 +49,18 @@
     cursor: pointer;
 }
 
-.header.darkmode>.themeButton{
-    background-color: $Dark-Mode-Elements;
-    color: $Dark-Mode-Text-Light-Mode-Elements;
-}
-
-.header.lightmode>.themeButton{
+.light.themeButton{
     background-color: $Dark-Mode-Text-Light-Mode-Elements;
 }
 
-.header.lightmode>.themeButton:hover{
-    margin-top: 0.15rem;
+.light.themeButton:hover{
     background-color: $Light-Mode-Background;
-    box-shadow: 0 5px 10px #85858580, 0 15px 40px #85858529;
 }
 
-.header.darkmode>.themeButton:hover{
-    margin-top: 0.15rem;
+.dark.themeButton{
+    background-color: $Dark-Mode-Elements;
+}
+
+.dark.themeButton:hover{
     background-color: $Dark-Mode-Background;
-}
-
-.themeButton>img{
-    position: relative;
-    top: 0.2em;
-    max-height: 1.4rem;
-    margin-right: 0.25rem;
-    fill: $Dark-Mode-Text-Light-Mode-Elements;
 }

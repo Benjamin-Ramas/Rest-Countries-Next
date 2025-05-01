@@ -1,5 +1,7 @@
+@import 'colours';
 @import 'header';
 @import 'countryData';
+
 
 .backgroundRef{
     position: absolute;
@@ -9,7 +11,6 @@
     pointer-events: none;
 }
 
-.styleWrapper{
-    min-height: 100vh;
-    height: 100%;
+.page{
+    min-height: 100%;
 }

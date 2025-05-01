@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../css/main.module.css'
+import styles from '../../css/main.module.css'
 
 export default function Loading(){
     return(

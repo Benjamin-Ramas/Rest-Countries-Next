@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from 'next-themes';
 
 const nunito = Nunito({
   variable: "--font-nunito-sans",
@@ -24,10 +25,12 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
-      <body className={`${nunitoSans.variable} ${nunito.variable}`}>
-        {children}
-      </body>
+    <html lang="en" suppressHydrationWarning>
+        <body className={`${nunitoSans.variable} ${nunito.variable}`}>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </body>
     </html>
   );
 }

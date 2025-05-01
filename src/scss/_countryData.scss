@@ -26,48 +26,33 @@
 }
 
 .backButton img {
-    max-height: 1.5rem;
+    max-height: 1.25rem;
     position: relative;
     top: 0.3rem;
     margin-right: 0.5rem;
     transform: scaleX(-1);
 }
 
-.styleWrapper.darkmode .backButton {
-    background-color: $Dark-Mode-Elements;
-    color: $Dark-Mode-Text-Light-Mode-Elements;
-}
-
-.styleWrapper.lightmode .backButton {
-    color: $Light-Mode-Text;
-}
-
-.styleWrapper.darkmode .backButton img {
-    filter: invert(100%);
-}
-
-.styleWrapper.header.lightmode .backButton img {
-    filter: invert(6%) sepia(11%) saturate(844%) hue-rotate(155deg) brightness(98%) contrast(96%);
-}
-
-.header.darkmode > .themeButton {
-    background-color: $Dark-Mode-Elements;
-    color: $Dark-Mode-Text-Light-Mode-Elements;
-}
-
-.header.lightmode > .themeButton {
+.light .backButton{
     background-color: $Dark-Mode-Text-Light-Mode-Elements;
+    box-shadow: 0 0 2px 2px rgba(133, 133, 133, 0.25), 0 0 10px 10px rgba(133, 133, 133, 0.05);
 }
 
-.header.lightmode > .themeButton:hover {
-    margin-top: 0.15rem;
+.light .backButton:hover{
     background-color: $Light-Mode-Background;
-    box-shadow: 0 5px 10px #85858580, 0 15px 40px #85858529;
 }
 
-.header.darkmode > .themeButton:hover {
-    margin-top: 0.15rem;
+.dark .backButton{
+    background-color: $Dark-Mode-Elements;
+    box-shadow: 0 0 2px 2px rgba(13, 18, 24, 0.25), 0 0 15px 15px rgba(7, 10, 14, 0.05);
+}
+
+.dark .backButton:hover{
     background-color: $Dark-Mode-Background;
+}
+
+.dark .backButton img{
+    filter: invert(100%);
 }
 
 .countryInfo .flagHolder {
@@ -97,16 +82,18 @@
 .countrySubInformation {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     max-height: 45%;
     flex-wrap: wrap;
     list-style: none;
     margin-top: 2rem;
+    max-width: 50rem;
 }
 
 .countrySubInformation li {
     font-size: 1em;
     margin-bottom: 0.6rem;
-    margin-right: 3rem;
+    margin-right: 5rem;
 }
 
 .languageHolder {
@@ -127,7 +114,7 @@
 }
 
 .nativeNamesList {
-    list-style:circle;
+    list-style:disc;
     margin-left: 3em;
 }
 
@@ -137,6 +124,7 @@
     margin-top: 1.25rem;
     margin-bottom: 2rem;
     font-size: 1.2em;
+    margin-top: 1.6rem;
 }
 
 .borderHolder h3 {
@@ -151,19 +139,41 @@
     list-style: none;
     flex-wrap: wrap;
     margin-left: 0.75rem;
+    margin-right: 1rem;
 }
 
 .borderList li {
-    margin-right: 0.5rem;
+    margin-right: 1rem;
     margin-bottom: 1rem;
 }
 
 .borderList li button {
     padding: 0.15rem 0.35rem;
     min-width: 6rem;
-    padding: 0.2rem 0;
+    padding: 0.4rem 0;
     font-size: 0.7em;
     font-weight: 600;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 300;
+}
+
+.light .borderList li button {
+    background-color: $Dark-Mode-Text-Light-Mode-Elements;
+    box-shadow: 0 0 2px 2px rgba(133, 133, 133, 0.25), 0 0 10px 10px rgba(133, 133, 133, 0.05);
+}
+
+.light .borderList li button:hover {
+    background-color: $Light-Mode-Background;
+}
+
+.dark .borderList li button {
+    background-color: $Dark-Mode-Elements;
+    box-shadow: 0 0 2px 2px rgba(13, 18, 24, 0.25), 0 0 15px 15px rgba(7, 10, 14, 0.05);
+}
+
+.dark .borderHolder li button:hover{
+    background-color: $Dark-Mode-Background;
 }
 
 .bold {
