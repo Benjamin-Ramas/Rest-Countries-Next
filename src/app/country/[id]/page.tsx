@@ -67,7 +67,7 @@ export default function Page(){
         )
     }
 
-    console.log(data.flag);
+    console.log(borders[0] != '');
 
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
@@ -99,9 +99,9 @@ export default function Page(){
                             </ul>
                         </ul>
                         <div className={styles.borderHolder}>
-                            <h5>{borders.length == 0 ? 'No Bordering Countries' : 'Border Countries: '}</h5>
+                            <h5>{borders.length == 0 || borders[0] == ''? 'No Bordering Countries' : 'Border Countries: '}</h5>
                             <ul className={styles.borderList}>
-                                {borders.length == 0 ? <></> : borders.map(n =>
+                                {borders.length == 0 || borders[0] == '' ? <></> : borders.map(n =>
                                     <li key={n}>
                                         <Link href={`/country/${n}`} key={n}>
                                             <button key={n}>{n}</button>
