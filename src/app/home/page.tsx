@@ -7,6 +7,7 @@ import Loading from "./loading";
 import GetCountries from "../utils/getCountry";
 import { countryCardInfo } from "../components/countrycard";
 import CountryCard from "../components/countrycard";
+import BackgroundRef from "../components/backgroundRef";
 
 export default function Page(){
     const {theme} = useTheme();
@@ -29,6 +30,7 @@ export default function Page(){
 
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
+            <BackgroundRef />
             <Header />
             <input 
                 type="text"
