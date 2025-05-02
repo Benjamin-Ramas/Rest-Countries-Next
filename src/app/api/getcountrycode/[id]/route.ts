@@ -1,6 +1,7 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server"
 
-export async function GET(request: Request, context: { params: { id: string } }){
+export async function GET(request: Request, context: any){
     console.log(`Contexts: ${context.params.id}`)
     const res = await fetch(`https://restcountries.com/v3.1/alpha/${context.params.id}`);
     const posts = await res.json();
