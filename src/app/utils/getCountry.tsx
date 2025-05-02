@@ -31,11 +31,10 @@ const GetCountries = async() => {
 }
 
 export const fetchData = async (countryName: string, setData: (d: any) => void, setMounted: (mounted: boolean) => void) => {
-    fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
+    fetch(`/api/getspecificcountry/${countryName}`)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.type);
-            setData(data[0])
+            setData(data.posts[0])
             setMounted(true);
           })
 }
@@ -43,7 +42,7 @@ export const fetchData = async (countryName: string, setData: (d: any) => void, 
 export const fetchNativeNames = async (data: fetchedCountryData, setNativeNames: (s: string[]) => void) => {
     const tempNativeNames: (string | undefined)[] = await Promise.all(
         Object.keys(data.name.nativeName).map(async (n) => {
-            const res = await fetch(`https://restcountries.com/v3.1/lang/${n}`);
+            const res = await fetch(`/api/getlang/${n}`);
             const d = await res.json();
             if(d[0] != undefined){
                 return `${d[0].languages[n]}: ${data.name.nativeName[n as keyof object].common}`;
@@ -67,8 +66,10 @@ export const fetchBorders = async (data: fetchedCountryData, setBorders: (data: 
     if(data.borders != undefined){
         const tempBorders: string[] = await Promise.all(
             Object.keys(data.borders).map(async (n) => {
-                const res = await fetch(`https://restcountries.com/v3.1/alpha/${data.borders[n as keyof object]}`);
+                console.log(data.borders[n as keyof object])
+                const res = await fetch(`/api/getcountrycode/${data.borders[n as keyof object]}`);
                 const d = await res.json();
+                console.log(d);
                 if(d[0] != undefined){
                     return d[0].name.common;
                 }
