@@ -95,7 +95,7 @@ export default function Page(){
                             <li><span className={styles.bold}>Sub Region: </span>{data.subregion}</li>
                             <li><span className={styles.bold}>Top Level Domain: </span>{data.tld}</li>
                             <ul className={styles.languageHolder}>
-                                <li><span className={styles.bold}>Languages: </span>
+                                <li><span className={styles.bold}>Language{languages.length > 1 ? 's' : ''}: </span>
                                     {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
                                 </li>
                             </ul>
