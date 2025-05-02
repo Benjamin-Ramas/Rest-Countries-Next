@@ -21,7 +21,12 @@ export type fetchedCountryData = {
 const GetCountries = async(setData: (d: any) => void) => {
     const data = await fetch('/api/getcountries');
     const posts = await data.json();
-    return setData(posts);
+    const sorted = posts.sort(function(a: fetchedCountryData, b: fetchedCountryData) {
+        let textA = a.name.common.toUpperCase();
+        let textB = b.name.common.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    return setData(sorted);
 }
 
 export const fetchData = async (countryName: string, setData: (d: any) => void, setMounted: (mounted: boolean) => void) => {
