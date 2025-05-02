@@ -2,14 +2,12 @@
 
 .header{
     display: flex;
-    flex-grow: 1;
     justify-content: space-between;
     
     padding-bottom: 1.7rem;
     padding-left: 5rem;
     letter-spacing: 0.025em;
     max-height: 5rem;
-    width: 100%;
 }
 
 .light.header{
@@ -18,7 +16,7 @@
 }
 
 .dark.header{
-    background-color: $Dark-Mode-Elements;
+    background-color: red;
     box-shadow: 0 0 5px 5px rgba(13, 18, 24, 0.25), 0 0 15px 15px rgba(7, 10, 14, 0.05);
 }
 
@@ -51,19 +49,19 @@
     cursor: pointer;
 }
 
-.light .themeButton{
+.light.themeButton{
     background-color: $Dark-Mode-Text-Light-Mode-Elements;
 }
 
-.light .themeButton:hover{
+.light.themeButton:hover{
     background-color: $Light-Mode-Background;
 }
 
-.dark .themeButton{
+.dark.themeButton{
     background-color: $Dark-Mode-Elements;
 }
 
-.dark .themeButton:hover{
+.dark.themeButton:hover{
     background-color: $Dark-Mode-Background;
 }
 

@@ -34,7 +34,8 @@ export default function Page(){
 
     useEffect(() => {
         fetchData(countryName, setData, setMounted);
-      }, []);
+      }, [])
+
     const [data, setData] = useState<fetchedCountryData>(defaultCountry);
     const [isLoading, setLoading] = useState(true);
     const [isMounted, setMounted] = useState(false);
@@ -65,6 +66,8 @@ export default function Page(){
             <Loading />
         )
     }
+
+    console.log(borders[0] != '');
 
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>

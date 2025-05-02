@@ -21,7 +21,6 @@ export default function Page(){
 
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
-            <title>Test</title>
             <Header />
             <h1>HOME</h1>
         </div>
