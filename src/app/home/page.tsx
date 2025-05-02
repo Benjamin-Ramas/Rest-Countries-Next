@@ -18,6 +18,7 @@ export default function Page(){
     useEffect(() => {
         setLoading(false);
         GetCountries(setCountries)
+        setRegionFilter('All')
     }, []);
 
     if(isLoading){
