@@ -18,16 +18,15 @@ export type fetchedCountryData = {
 
 }
 
-const GetCountries = async() => {
-    const data = await fetch('https://restcountries.com/v3.1/all');
-    const posts: object = await data.json();
-    return (
-        <>
-            <p>
-                {JSON.stringify(posts)}
-            </p>
-        </>
-    )
+const GetCountries = async(setData: (d: any) => void) => {
+    const data = await fetch('/api/getcountries');
+    const posts = await data.json();
+    const sorted = posts.sort(function(a: fetchedCountryData, b: fetchedCountryData) {
+        var textA = a.name.common.toUpperCase();
+        var textB = b.name.common.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    return setData(posts);
 }
 
 export const fetchData = async (countryName: string, setData: (d: any) => void, setMounted: (mounted: boolean) => void) => {
