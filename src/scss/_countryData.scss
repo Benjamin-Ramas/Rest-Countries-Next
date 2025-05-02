@@ -127,9 +127,11 @@
     margin-top: 1.6rem;
 }
 
-.borderHolder h3 {
-    margin: auto;
+.borderHolder h2 {
+    margin: 0;
     text-wrap: nowrap;
+    font-size: 0.75em;
+    letter-spacing: 0.03em;
 }
 
 .borderList {
@@ -148,9 +150,8 @@
 }
 
 .borderList li button {
-    padding: 0.15rem 0.35rem;
     min-width: 6rem;
-    padding: 0.4rem 0;
+    padding: 0.4rem 1.25rem;
     font-size: 0.7em;
     font-weight: 600;
     border: none;

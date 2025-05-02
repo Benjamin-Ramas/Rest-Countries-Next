@@ -77,13 +77,13 @@ export default function Page(){
                     <img className={styles.backButtonArrow} src={'/right-arrow-svgrepo-com.svg'} />
                     Back
                 </button>
-                <div className={styles.countryInfo}>
-                    <div className={styles.flagHolder}>
+                <main className={styles.countryInfo}>
+                    <div role="Holds the flag of the current country" className={styles.flagHolder}>
                         <img className={styles.countryFlag} src={data.flags.png} alt={data.flags.alt}/>
                     </div>
-                    <div className={styles.countryData}>
-                        <h1 className={styles.countryNameDisplay}>{data.name.common}</h1>
-                        <ul className={styles.countrySubInformation}>
+                    <div role="Holds country information" className={styles.countryData}>
+                        <h1 role="Country Name" className={styles.countryNameDisplay}>{data.name.common}</h1>
+                        <ul role="List of country information" className={styles.countrySubInformation}>
                             <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
                             {   
                                 nativeNames[0] == '' ?
@@ -94,14 +94,13 @@ export default function Page(){
                             <li><span className={styles.bold}>Region: </span>{data.region}</li>
                             <li><span className={styles.bold}>Sub Region: </span>{data.subregion}</li>
                             <li><span className={styles.bold}>Top Level Domain: </span>{data.tld}</li>
-                            <ul className={styles.languageHolder}>
-                                <li><span className={styles.bold}>Language{languages.length > 1 ? 's' : ''}: </span>
+                            <li className={styles.languageHolder}>
+                                <span className={styles.bold}>Language{languages.length > 1 ? 's' : ''}: </span>
                                     {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
-                                </li>
-                            </ul>
+                            </li>
                         </ul>
-                        <div className={styles.borderHolder}>
-                            <h5>{borders.length == 0 || borders[0] == ''? 'No Bordering Countries' : 'Border Countries: '}</h5>
+                        <div role="Holds a list of bordering countries" className={styles.borderHolder}>
+                            <h2 role="">{borders.length == 0 || borders[0] == ''? 'No Bordering Countries' : 'Border Countries: '}</h2>
                             <ul className={styles.borderList}>
                                 {borders.length == 0 || borders[0] == '' ? <></> : borders.map(n =>
                                     <li key={n}>
@@ -113,7 +112,7 @@ export default function Page(){
                             </ul>
                         </div>
                     </div>
-                </div>
+                </main>
         </div>
     )
 }
