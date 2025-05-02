@@ -67,7 +67,7 @@ export const fetchBorders = async (data: fetchedCountryData, setBorders: (data: 
     if(data.borders != undefined){
         const tempBorders: string[] = await Promise.all(
             Object.keys(data.borders).map(async (n) => {
-                const res = await fetch(`https://restcountries.com/v3.1/alpha/${data.borders[n as keyof object]}`);
+                const res = await fetch(`/api/getcountrycode/${data.borders[n as keyof object]}`);
                 const d = await res.json();
                 if(d[0] != undefined){
                     return d[0].name.common;
