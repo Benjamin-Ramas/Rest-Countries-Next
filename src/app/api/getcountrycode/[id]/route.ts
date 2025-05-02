@@ -2,8 +2,9 @@
 import { NextResponse } from "next/server"
 
 export async function GET(request: Request, context: any){
-    console.log(`Contexts: ${context.params.id}`)
-    const res = await fetch(`https://restcountries.com/v3.1/alpha/${context.params.id}`);
+    const param = await context.params;
+    const code = await param.id;
+    const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
     const posts = await res.json();
     return NextResponse.json(posts);
 }

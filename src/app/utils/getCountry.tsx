@@ -31,13 +31,11 @@ const GetCountries = async() => {
 }
 
 export const fetchData = async (countryName: string, setData: (d: any) => void, setMounted: (mounted: boolean) => void) => {
-    fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data.type);
-            setData(data[0])
-            setMounted(true);
-          })
+    const res = await fetch(`/api/getspecificcountry/${countryName}`);
+    const data = await res.json();
+    console.log(data.posts[0]);
+    setMounted(true);
+    setData(data.posts[0]);
 }
 
 export const fetchNativeNames = async (data: fetchedCountryData, setNativeNames: (s: string[]) => void) => {
