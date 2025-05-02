@@ -1,7 +1,6 @@
-import { Params } from "next/dist/server/request/params";
 import { NextResponse } from "next/server"
 
-export async function GET(request: Request, context: {params: Params}){
+export async function GET(request: Request, context: { params: { id: string } }){
     console.log(`Contexts: ${context.params.id}`)
     const res = await fetch(`https://restcountries.com/v3.1/alpha/${context.params.id}`);
     const posts = await res.json();
