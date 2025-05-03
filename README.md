@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution](https://github.com/Benjamin-Ramas/Rest-Countries-Next)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/nextjs-rest-countries-api-GEouXkH2QA)
 - Live Site URL: [Live Site](https://rest-countries-next-one.vercel.app/home)
 
 ## My process
