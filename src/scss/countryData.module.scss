@@ -1,10 +1,13 @@
+@import 'colours';
+@import 'mediaSizes';
 .countryInfo {
     display: flex;
     flex-direction: row;
     width: 100%;
     margin-top: 5rem;
-    max-height: 30rem;
 }
+
+
 
 .flagData {
     display: flex;
@@ -81,13 +84,16 @@
 
 .countrySubInformation {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-height: 45%;
+    flex-direction: row;
     flex-wrap: wrap;
     list-style: none;
     margin-top: 2rem;
-    max-width: 50rem;
+}
+
+.infoSection{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .countrySubInformation li {
@@ -179,4 +185,70 @@
 
 .bold {
     font-weight: 600;
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .countryInfo{
+        //margin-top: 4rem;
+        margin: auto;
+        margin-top: 1.9rem;
+        flex-direction: column;
+        width: 80%;
+    }
+    .countryData{
+        flex: 1;
+        margin-left: 1.75rem;
+        min-height: 100%;
+        width: 80%;
+    }
+    .countryData h2{
+        margin-top: 0.55rem;
+        font-size: 1.4em;
+    }
+    .borderHolder{
+        flex-direction: column;
+    }
+    .borderHolder h2{
+        font-size: 0.775em;
+    }
+    .borderList{
+        flex-direction: row;
+        margin-left: 0;
+    }
+    .borderList li{
+        margin-right: 0.5rem;
+    }
+    .borderList li button{
+        padding: 0.4rem 0.5rem;
+        font-size: 0.6em;
+    }
+    .countrySubInformation{
+        margin-top: 1.55rem;
+        font-size: 0.85em;
+        min-height: 100%;
+    }
+    .backButton{
+        margin-top: 2.5rem;
+        margin-left: 1.6rem;
+        font-size: 0.85em;
+        padding: 0;
+        min-width: 6.5rem;
+        min-height: 2rem;
+    }
+    .backButton img{
+        max-height: 1rem;
+        margin: 0;
+        margin-right: 1rem;
+        position: relative;
+        top: 0.2rem;
+        left: 0.5rem;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .countryInfo{
+        margin: 0;
+        margin-top: 4rem;
+        width: 100%;
+    }
 }

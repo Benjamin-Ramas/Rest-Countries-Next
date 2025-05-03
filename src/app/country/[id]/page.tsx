@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { fetchData, fetchBorders, fetchNativeNames, fetchedCountryData } from '@/app/utils/getCountry';
 import Header from "@/app/components/header";
 import BackgroundRef from "@/app/components/backgroundRef";
-import styles from "@/css/main.module.css";
+import styles from "@/css/countryData.module.css";
 import Loading from "./loading"
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
@@ -82,8 +82,9 @@ export default function Page(){
                         <img className={styles.countryFlag} src={data.flags.png} alt={data.flags.alt}/>
                     </div>
                     <div role="Holds country information" className={styles.countryData}>
-                        <h1 role="Country Name" className={styles.countryNameDisplay}>{data.name.common}</h1>
+                        <h2 role="Country Name" className={styles.countryNameDisplay}>{data.name.common}</h2>
                         <ul role="List of country information" className={styles.countrySubInformation}>
+                            <ul className={styles.infoSection}>
                             <li className={styles.bold}>{nativeNames[0] == '' ? '' : `Name in Native Language${nativeNames.length > 1 ? 's: ' : ':'}`}</li>
                             {   
                                 nativeNames[0] == '' ?
@@ -92,12 +93,15 @@ export default function Page(){
                             }
                             <li><span className={styles.bold}>Population: </span>{data.population}</li>
                             <li><span className={styles.bold}>Region: </span>{data.region}</li>
+                            </ul>
+                            <ul className={styles.infoSection}>
                             <li><span className={styles.bold}>Sub Region: </span>{data.subregion}</li>
                             <li><span className={styles.bold}>Top Level Domain: </span>{data.tld}</li>
                             <li className={styles.languageHolder}>
                                 <span className={styles.bold}>Language{languages.length > 1 ? 's' : ''}: </span>
                                     {languages.map(n => `${n}${n != languages[languages.length - 1] ? ', ' : ''}`)}
                             </li>
+                            </ul>
                         </ul>
                         <div role="Holds a list of bordering countries" className={styles.borderHolder}>
                             <h2 role="">{borders.length == 0 || borders[0] == ''? 'No Bordering Countries' : 'Border Countries: '}</h2>

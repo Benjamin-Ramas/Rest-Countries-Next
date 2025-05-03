@@ -1,11 +1,12 @@
 @import 'colours';
+@import 'mediaSizes';
 
 .header{
     display: flex;
     justify-content: space-between;
     
     padding-bottom: 1.7rem;
-    padding-left: 5rem;
+    padding-left: 4.5rem;
     letter-spacing: 0.025em;
     max-height: 5rem;
 }
@@ -24,7 +25,6 @@
     margin-top: 1rem;
     font-size: 1.5em;
     font-weight: 600;
-    margin-right: -0.5rem;
     padding: 0.5rem;
     border-radius: 1rem;
 }
@@ -68,6 +68,39 @@
     background-color: $Dark-Mode-Background;
 }
 
-.headerText:hover{
+.light .headerText:hover{
+    background-color: $Light-Mode-Background;
+}
+
+.dark .headerText:hover{
     background-color: $Dark-Mode-Background;
+}
+
+@media (max-width: $breakpoint-tablet) {
+    .header{
+        justify-content: space-between;
+        padding: 0;
+        padding-bottom: 0.5rem;
+        max-height: fit-content;
+    }
+    .headerText{
+        margin-top: 1.45rem;
+        margin-left: 0.45rem;
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+    }
+    .themeButton{
+        padding: 0;
+        margin-right: 0;
+        width: 7.5rem;
+        margin-top: 0.44rem;
+        margin-right: 0;
+        font-size: 0.75em;
+        font-weight: 300;
+    }
+    .themeButton img{
+        height: 1rem;
+    }
+
 }

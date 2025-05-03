@@ -32,7 +32,6 @@ const GetCountries = async(setData: (d: any) => void) => {
 export const fetchData = async (countryName: string, setData: (d: any) => void, setMounted: (mounted: boolean) => void) => {
     const res = await fetch(`/api/getspecificcountry/${countryName}`);
     const data = await res.json();
-    console.log(data.posts[0]);
     setMounted(true);
     setData(data.posts[0]);
 }
