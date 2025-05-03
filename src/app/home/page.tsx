@@ -7,7 +7,6 @@ import Loading from "./loading";
 import GetCountries from "../utils/getCountry";
 import { countryCardInfo } from "../components/countrycard";
 import CountryCard from "../components/countrycard";
-import BackgroundRef from "../components/backgroundRef";
 
 export default function Page(){
     const {theme} = useTheme();
@@ -31,7 +30,6 @@ export default function Page(){
     return(
         <div className={`${styles.page} ${theme == 'dark' ? styles.dark : styles.light}`}>
             <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>`}></link>
-            <BackgroundRef />
             <Header />
             <section className={styles.filtersHolder}>
                 <div className={styles.countrySearch}>
